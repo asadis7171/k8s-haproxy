@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+
+  haproxy:
+    image: haproxy
+    ports:
+      - "80:80"
+      - "8404:8404"
+    volumes:
+      - "./haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg"
+
+  node1.web:
+    image: nginx
+    volumes:
+      - "./web/web.nginx.cfg:/etc/nginx/nginx.conf"
+      - "./web/html:/usr/share/nginx/html"
+
+  node1.api:
+    image: nginx
+    volumes:
+      - "./api/node1.api.nginx.cfg:/etc/nginx/nginx.conf"
+
+  node2.api:
+    image: nginx
+    volumes:
+      - "./api/node2.api.nginx.cfg:/etc/nginx/nginx.conf"
+
+  node3.api:
+    image: nginx
+    volumes:
+      - "./api/node3.api.nginx.cfg:/etc/nginx/nginx.conf"
