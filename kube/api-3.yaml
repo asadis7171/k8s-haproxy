@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-3
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: api-3-pod
+  template:
+    metadata:
+      labels:
+        app: api-3-pod
+    spec:
+      containers:
+       - name: api-3-container
+         image: asadis7171/api:node-3
+         ports:
+          - containerPort: 80
